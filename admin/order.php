@@ -157,7 +157,7 @@ include('config/dbcon.php'); // Include the database connection file
   </div>
 </div>
 
-<script src="script.js"></script>
+<script src="assets/js/script.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/perfect-scrollbar.min.js"></script>
 <script src="assets/js/smooth-scrollbar.min.js"></script>

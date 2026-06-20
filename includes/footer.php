@@ -1,6 +1,6 @@
 <footer class="footer">
     <div class="footer-left">
-        <img src="logo/logo_white.png" alt="">
+        <img src="assets/logo/logo_white.png" alt="">
         <div class="socials">
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa-brands fa-x-twitter"></i></a>

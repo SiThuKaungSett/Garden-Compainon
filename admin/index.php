@@ -179,7 +179,7 @@ include('config/dbcon.php'); // Ensure the database connection is included
   </div>
 </div>
 
-<script src="script.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 
 </html>

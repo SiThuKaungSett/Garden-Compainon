@@ -13,9 +13,9 @@ unset($_SESSION['error']); // Clear error after displaying
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="assets/css/login.css">
     <script src="https://kit.fontawesome.com/1eb1993361.js" crossorigin="anonymous"></script>
-    <script src="validate.js" defer></script>
+    <script src="assets/js/validate.js" defer></script>
     <title>Login</title>
 
 </head>
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       167.945 179.32C173.46 117.209 284.755 95.1699 342.407 73.6315Z" />
 
             <!-- Insert your image (recommended size: 1000 x 1200) -->
-            <image class="login__img" href="logo/loginbg3.jpg" />
+            <image class="login__img" href="assets/logo/loginbg3.jpg" />
         </g>
     </svg>
 
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     </div>
 
-    <script src="login.js"></script>
+    <script src="assets/js/login.js"></script>
     <div id="toast" class="toast"><?php echo $error_message; ?></div>
 
 <script>

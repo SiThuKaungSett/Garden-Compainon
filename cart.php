@@ -62,7 +62,7 @@ if (isset($_POST['remove'])) {
 ?>
 
 <header>
-    <a href="index.php" class="logo"><img src="logo/logo1.png" alt=""></a>
+    <a href="index.php" class="logo"><img src="assets/logo/logo1.png" alt=""></a>
     <ul class="navmenu">
         <li><a href="index.php">Home</a></li>
         <li class="active"><a href="plants.php">Plants</a></li>
@@ -163,10 +163,10 @@ if (isset($_POST['remove'])) {
                         <div class="payment-options">
                             <label class="payment-method" for="kbzpay">
                                 <input type="radio" id="kbzpay" name="payment_method" value="KBZpay" required>
-                                <img src="logo/kbzpay.png" alt="KBZPay">
+                                <img src="assets/logo/kbzpay.png" alt="KBZPay">
                             </label>
                             <div class="qr-code">
-                                <img src="images/qr.jpg" alt="QR Code">
+                                <img src="assets/images/qr.jpg" alt="QR Code">
                             </div>
                         </div>
 
@@ -216,6 +216,6 @@ if (isset($_POST['remove'])) {
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="cart.js"></script>
+<script src="assets/js/cart.js"></script>
 
 <?php include('includes/footer.php'); ?>

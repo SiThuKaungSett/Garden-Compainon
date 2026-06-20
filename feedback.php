@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
 ?>
 
 <header>
-  <a href="index.php" class="logo"><img src="logo/logo1.png" alt=""></a>
+  <a href="index.php" class="logo"><img src="assets/logo/logo1.png" alt=""></a>
 
   <ul class="navmenu">
     <li><a href="index.php">Home</a></li>
@@ -109,4 +109,4 @@ if ($result->num_rows > 0) {
 
 <?php include('includes/footer.php'); ?>
 
-<script src="feedback.js"></script>
+<script src="assets/js/feedback.js"></script>

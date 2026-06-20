@@ -19,7 +19,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 10px 8%;
-  background: url(logo/navbg.png);
+  background: url(../logo/navbg.png);
   background-size: cover;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -117,7 +117,7 @@ header {
   justify-content: center;
   text-align: center;
   position: relative;
-  background-image: url('images/intro_bg1.jpg');
+  background-image: url('../images/intro_bg1.jpg');
   background-size: cover;
   background-position: center;
   height: 80vh;
@@ -227,19 +227,19 @@ header {
 
 /* Category Backgrounds */
 .hot-season {
-  background-image: url('images/hotseason1.jpg');
+  background-image: url('../images/hotseason1.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .rainy-season {
-  background-image: url('images/rainyseason1.jpg');
+  background-image: url('../images/rainyseason1.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .cold-season {
-  background-image: url('images/coldseason.jpg');
+  background-image: url('../images/coldseason.jpg');
   background-size: cover;
   background-position: center;
 }

@@ -3,7 +3,7 @@ session_start();
 include('includes/header.php'); ?>
 
 <header>
-    <a href="index.php" class="logo"><img src="logo/logo1.png" alt=""></a>
+    <a href="index.php" class="logo"><img src="assets/logo/logo1.png" alt=""></a>
 
     <ul class="navmenu">
         <li><a href="index.php">Home</a></li>
@@ -49,7 +49,7 @@ include('includes/header.php'); ?>
         <div class="card">
 
             <div class="imbBx">
-                <img src="images/p1.jpg" alt="">
+                <img src="assets/images/p1.jpg" alt="">
             </div>
 
             <div class="content">
@@ -64,7 +64,7 @@ include('includes/header.php'); ?>
         <div class="card">
 
             <div class="imbBx">
-                <img src="images/p3.jpg" alt="">
+                <img src="assets/images/p3.jpg" alt="">
             </div>
 
             <div class="content">
@@ -79,7 +79,7 @@ include('includes/header.php'); ?>
         <div class="card">
 
             <div class="imbBx">
-                <img src="images/p5.jpg" alt="">
+                <img src="assets/images/p5.jpg" alt="">
             </div>
 
             <div class="content">
@@ -94,7 +94,7 @@ include('includes/header.php'); ?>
         <div class="card">
 
             <div class="imbBx">
-                <img src="images/p4.jpg" alt="">
+                <img src="assets/images/p4.jpg" alt="">
             </div>
 
             <div class="content">
@@ -111,7 +111,7 @@ include('includes/header.php'); ?>
         <div class="card">
 
             <div class="imbBx">
-                <img src="images/p2.jpg" alt="">
+                <img src="assets/images/p2.jpg" alt="">
             </div>
 
             <div class="content">

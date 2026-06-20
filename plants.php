@@ -31,7 +31,7 @@ $total_pages = ceil($total_rows / $limit);
 ?>
 
 <header>
-  <a href="index.php" class="logo"><img src="logo/logo1.png" alt=""></a>
+  <a href="index.php" class="logo"><img src="assets/logo/logo1.png" alt=""></a>
 
   <ul class="navmenu">
     <li><a href="index.php">Home</a></li>
