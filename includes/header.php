@@ -8,6 +8,7 @@ include('admin/config/dbcon.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
     <title>Garden Compainon</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/index_style.css">
     <link rel="stylesheet" href="assets/css/product.css">
     <link rel="stylesheet" href="assets/css/moredetail.css">
     <link rel="stylesheet" href="assets/css/footer.css">

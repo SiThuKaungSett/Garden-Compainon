@@ -1,0 +1,681 @@
+/* ============================================
+   GARDEN COMPANION — Index Page Styles
+   Add these rules to your assets/css/style.css
+   or link as a separate sheet after style.css
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+
+/* --- RESET (scoped to gc- classes) --- */
+.gc-hero *, .gc-seasons-section *, .gc-features-strip *, .gc-header * {
+  box-sizing: border-box;
+}
+
+/* ========== HEADER / NAV ========== */
+.gc-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 48px;
+  background: rgba(250, 250, 245, 0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(74, 124, 89, 0.12);
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gc-brand-icon {
+  width: 36px;
+  height: 36px;
+  background: #1E3A2F;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gc-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.gc-brand-text span {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1E3A2F;
+  letter-spacing: -0.3px;
+}
+
+.gc-brand-text small {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #4A7C59;
+  font-weight: 500;
+}
+
+.gc-navmenu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gc-navmenu a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #3D5C47;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 100px;
+  transition: all 0.2s;
+  display: block;
+}
+
+.gc-navmenu a:hover,
+.gc-navmenu li.active a {
+  background: #EDF4EF;
+  color: #1E3A2F;
+}
+
+.gc-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+/* Search bar — neutral, no green tint */
+.gc-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F2F2F0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 7px 14px;
+  position: relative;
+}
+
+.gc-search-input {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: #1E3A2F;
+  outline: none;
+  width: 140px;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-search-input::placeholder {
+  color: #999;
+}
+
+/* Icon buttons — square-rounded, not oval */
+.gc-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #3D5C47;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.gc-icon-btn:hover {
+  background: #EDF4EF;
+  border-color: rgba(74, 124, 89, 0.3);
+  color: #1E3A2F;
+}
+
+.gc-cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #e05c3a;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+}
+
+/* ========== HERO ========== */
+.gc-hero {
+  min-height: 88vh;
+  background: #1E3A2F;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.gc-hero-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(74, 124, 89, 0.35) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(196, 149, 106, 0.15) 0%, transparent 40%);
+}
+
+.gc-hero-leaves {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.gc-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  width: 100%;
+}
+
+.gc-hero-text {
+  color: #F5F0E8;
+}
+
+.gc-hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #7AAE8B;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #F5F0E8;
+  margin-bottom: 24px;
+}
+
+.gc-hero-title em {
+  font-style: italic;
+  color: #8FC99E;
+}
+
+.gc-hero-desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(245, 240, 232, 0.7);
+  margin-bottom: 40px;
+  max-width: 420px;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.gc-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #4A7C59;
+  color: #F5F0E8;
+  padding: 13px 28px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s;
+  border: 2px solid #4A7C59;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-btn-primary:hover {
+  background: #3a6246;
+  border-color: #3a6246;
+}
+
+.gc-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #F5F0E8;
+  padding: 13px 28px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid rgba(245, 240, 232, 0.3);
+  transition: all 0.25s;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-btn-outline:hover {
+  background: rgba(245, 240, 232, 0.1);
+}
+
+.gc-hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(245, 240, 232, 0.12);
+}
+
+.gc-stat {
+  color: #F5F0E8;
+}
+
+.gc-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.gc-stat-label {
+  font-size: 12px;
+  color: rgba(245, 240, 232, 0.5);
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Hero visual cards */
+.gc-hero-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gc-plant-showcase {
+  background: rgba(245, 240, 232, 0.06);
+  border: 1px solid rgba(245, 240, 232, 0.12);
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.gc-plant-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(74, 124, 89, 0.3);
+  color: #8FC99E;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-plant-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #F5F0E8;
+  margin-bottom: 6px;
+}
+
+.gc-plant-latin {
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(245, 240, 232, 0.4);
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-plant-attrs {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.gc-attr {
+  background: rgba(245, 240, 232, 0.06);
+  border: 1px solid rgba(245, 240, 232, 0.1);
+  border-radius: 10px;
+  padding: 10px 14px;
+  flex: 1;
+}
+
+.gc-attr-label {
+  font-size: 10px;
+  color: rgba(245, 240, 232, 0.4);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-attr-val {
+  font-size: 13px;
+  font-weight: 600;
+  color: #F5F0E8;
+  margin-top: 3px;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-mini-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.gc-mini-card {
+  background: rgba(245, 240, 232, 0.06);
+  border: 1px solid rgba(245, 240, 232, 0.1);
+  border-radius: 14px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.gc-mini-card:hover {
+  background: rgba(245, 240, 232, 0.1);
+}
+
+.gc-mc-icon {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.gc-mc-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #F5F0E8;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-mc-season {
+  font-size: 11px;
+  color: rgba(245, 240, 232, 0.4);
+  margin-top: 2px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ========== SEASONS ========== */
+.gc-seasons-section {
+  padding: 80px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.gc-section-eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #4A7C59;
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  color: #1E3A2F;
+  margin-bottom: 48px;
+  line-height: 1.2;
+}
+
+.gc-seasons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.gc-season-card {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  min-height: 380px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  transition: transform 0.3s;
+}
+
+.gc-season-card:hover {
+  transform: translateY(-6px);
+}
+
+.gc-season-card:hover .gc-season-overlay {
+  background: linear-gradient(to top, rgba(30, 58, 47, 0.95) 0%, rgba(30, 58, 47, 0.3) 60%, transparent 100%);
+}
+
+.gc-season-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gc-hot-bg {
+  background: linear-gradient(135deg, #C4703A 0%, #E8A857 50%, #F5C87A 100%);
+}
+
+.gc-rainy-bg {
+  background: linear-gradient(135deg, #2D6E8E 0%, #4A9BB5 50%, #7BBFD4 100%);
+}
+
+.gc-cold-bg {
+  background: linear-gradient(135deg, #3A5A7A 0%, #5B7FA0 50%, #8AAAC4 100%);
+}
+
+.gc-season-illustration {
+  font-size: 80px;
+  opacity: 0.25;
+}
+
+.gc-season-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30, 58, 47, 0.9) 0%, rgba(30, 58, 47, 0.2) 55%, transparent 100%);
+  transition: all 0.3s;
+}
+
+.gc-season-content {
+  position: relative;
+  z-index: 2;
+  padding: 28px;
+  width: 100%;
+}
+
+.gc-season-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 240, 232, 0.15);
+  border: 1px solid rgba(245, 240, 232, 0.2);
+  color: #F5F0E8;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-season-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: #F5F0E8;
+  margin-bottom: 8px;
+}
+
+.gc-season-desc {
+  font-size: 13px;
+  color: rgba(245, 240, 232, 0.7);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-season-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #8FC99E;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.gc-season-link svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  transition: transform 0.2s;
+}
+
+.gc-season-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* ========== FEATURES STRIP ========== */
+.gc-features-strip {
+  background: #1E3A2F;
+  padding: 60px 48px;
+  margin-top: 0;
+}
+
+.gc-features-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+
+.gc-feature {
+  color: #F5F0E8;
+}
+
+.gc-feature-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(74, 124, 89, 0.4);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.gc-feature-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.gc-feature-desc {
+  font-size: 13px;
+  color: rgba(245, 240, 232, 0.55);
+  line-height: 1.7;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ========== FOOTER OVERRIDE ========== */
+footer.footer {
+  background: #F0EBE1;
+  color: #1E3A2F;
+}
+
+footer.footer .footer-left img {
+  width: 160px;
+}
+
+footer.footer .footer-left p,
+footer.footer .box a,
+footer.footer li {
+  color: #6B8F75;
+}
+
+footer.footer h2 {
+  color: #1E3A2F;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+footer.footer .socials a {
+  background: rgba(74, 124, 89, 0.12);
+  border-radius: 8px;
+}
+
+footer.footer .socials a i {
+  color: #4A7C59;
+}
+
+footer.footer .socials a:hover {
+  background: #4A7C59;
+}
+
+footer.footer .socials a:hover i {
+  color: #F5F0E8;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .gc-hero-content {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 60px 32px;
+  }
+  .gc-hero-title { font-size: 40px; }
+  .gc-hero-visual { display: none; }
+  .gc-seasons-grid { grid-template-columns: 1fr; }
+  .gc-features-inner { grid-template-columns: 1fr; gap: 32px; }
+  .gc-header { padding: 14px 24px; }
+  .gc-seasons-section { padding: 60px 24px; }
+  .gc-features-strip { padding: 48px 24px; }
+}
+
+@media (max-width: 768px) {
+  .gc-navmenu { display: none; }
+  .gc-hero-title { font-size: 32px; }
+  .gc-section-title { font-size: 28px; }
+  .gc-hero-stats { gap: 20px; }
+}
