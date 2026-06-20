@@ -1,0 +1,429 @@
+/* General Container */
+.cart-container {
+  max-width: 1100px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Layout: Two Columns */
+.cart-content {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+/* Left Side: Cart Items */
+.cart-items {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 100px 100px 80px;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-image img {
+  width: 80px;
+  border-radius: 8px;
+}
+
+.cart-details {
+  padding-left: 10px;
+}
+
+.cart-product-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cart-price {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.cart-quantity input {
+  width: 50px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.cart-total {
+  font-weight: bold;
+  color: #333;
+}
+
+.cart-remove {
+  background: #e74c3c;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none; /* Ensure no border */
+  font-size: 14px; /* Ensure font size is set */
+}
+
+.cart-remove:hover {
+  background: #c0392b;
+}
+
+/* Right Side: Cart Summary */
+.cart-summary {
+  flex: 1;
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.cart-summary h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.summary-details {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.summary-details p {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.summary-total {
+  font-size: 18px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.checkout-btn {
+  width: 80%; /* Reduce button width */
+  padding: 10px; /* Reduce padding */
+  font-size: 16px; /* Reduce font size */
+  margin-top: 15px;
+  margin-bottom: 20px; /* Add bottom margin to prevent overlapping */
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #219150;
+}
+
+/* Ensure cart-summary has enough bottom spacing */
+.cart-summary {
+  padding-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cart-content {
+      flex-direction: column;
+  }
+
+  .cart-summary {
+      margin-top: 20px;
+  }
+}
+
+/* Ensure Modal is Completely Hidden on Page Load */
+.checkout-modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* When modal is active (shown), make it visible */
+.checkout-modal.active {
+    display: flex;
+}
+
+/* Enlarged Checkout Content */
+.checkout-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    width: 800px; /* Increased width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    text-align: center;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Checkout Title */
+.checkout-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Two Column Layout */
+.checkout-form-container {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Left Section */
+.checkout-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: left;
+}
+
+.checkout-left label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+.checkout-left input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Payment Method Section - Full Width */
+.payment-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.payment-method input {
+  display: none; /* Hide radio buttons */
+}
+
+.payment-method img {
+  width: 70px; /* Adjusted width */
+  height: 70px; /* Adjusted height */
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.payment-method input:checked + img {
+  border-color: #27ae60;
+}
+
+/* QR Code Styling */
+.qr-code img {
+  width: 100px; /* Adjusted width */
+  height: 100px; /* Adjusted height */
+  border-radius: 5px;
+}
+
+/* OR Text Centered */
+.or-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Cash on Delivery and Confirm Order on Same Line */
+.cod-option-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.cod-option {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #27ae60;
+    text-align: center;
+}
+
+.cod-option input {
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.cod-option span {
+    display: inline-block;
+}
+
+/* Right Section */
+.checkout-right {
+    flex: 1;
+    text-align: center;
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+/* Ensure Total Cost and Place Order are at the Bottom */
+.item-summary {
+    flex-grow: 1;
+}
+
+.total-cost {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #27ae60;
+    border-top: 1px solid #ddd;
+}
+
+.checkout-submit {
+    background: #27ae60;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.checkout-submit:hover {
+    background: #219150;
+}
+
+/* Ensure Confirm Order Button is at the Bottom of Item Summary */
+.checkout-bottom-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.checkout-bottom-container .cod-option {
+  display: flex;
+  align-items: center;
+}
+
+.checkout-bottom-container .checkout-submit {
+  margin-left: auto;
+}
+
+/* Order Success Modal */
+#order-success-modal {
+  display: none; /* Initially hidden */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  justify-content: center;
+  align-items: center;
+}
+
+/* When modal is active, show it */
+#order-success-modal.active {
+  display: flex;
+}
+
+/* Modal Content */
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Success Icon */
+.success-icon {
+  font-size: 50px;
+  color: #27ae60;
+  margin-bottom: 10px;
+}
+
+/* Modal Heading */
+.modal-content h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Modal Text */
+.modal-content p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* OK Button */
+#success-ok-btn {
+  background-color: #27ae60;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#success-ok-btn:hover {
+  background-color: #219150;
+}
