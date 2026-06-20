@@ -14,6 +14,7 @@ include('admin/config/dbcon.php');
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/cart.css">
     <link rel="stylesheet" href="assets/css/aboutus.css">
+    <script src="assets/js/gc_animations.js" defer></script>
     <script src="assets/js/search.js"></script>
     
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
