@@ -2,123 +2,160 @@
 session_start();
 include('includes/header.php');
 
-// Define how many products per page
-$limit = 8; // Change this value to control how many products appear per page
-
-// Get the current page number from the URL, default to 1 if not set
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$page = max($page, 1); // Ensure the page number is at least 1
-
-// Get the selected season from the dropdown
+$limit = 8;
+$page  = isset($_GET['page']) ? max((int)$_GET['page'], 1) : 1;
 $season = isset($_GET['season']) ? $_GET['season'] : 'All';
+$start  = ($page - 1) * $limit;
 
-// Calculate the starting row for the query
-$start = ($page - 1) * $limit;
-
-// Construct the SQL query based on the selected season
 if ($season == 'All') {
-    $sql = "SELECT p_id, p_name, p_image, price, season FROM plants LIMIT $start, $limit";
+    $sql       = "SELECT p_id, p_name, p_image, price, season FROM plants LIMIT $start, $limit";
     $total_sql = "SELECT COUNT(*) FROM plants";
 } else {
-    $sql = "SELECT p_id, p_name, p_image, price, season FROM plants WHERE season = '$season' LIMIT $start, $limit";
+    $sql       = "SELECT p_id, p_name, p_image, price, season FROM plants WHERE season = '$season' LIMIT $start, $limit";
     $total_sql = "SELECT COUNT(*) FROM plants WHERE season = '$season'";
 }
 
-$plantdata = mysqli_query($con, $sql);
+$plantdata    = mysqli_query($con, $sql);
 $total_result = mysqli_query($con, $total_sql);
-$total_rows = mysqli_fetch_array($total_result)[0];
-$total_pages = ceil($total_rows / $limit);
+$total_rows   = mysqli_fetch_array($total_result)[0];
+$total_pages  = ceil($total_rows / $limit);
 ?>
 
-<header>
-  <a href="index.php" class="logo"><img src="assets/logo/logo1.png" alt=""></a>
+<!-- NAV — identical to index -->
+<header class="gc-header">
+  <div class="gc-nav-brand">
+    <div class="gc-brand-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7EAD88" stroke-width="2" stroke-linecap="round">
+        <path d="M12 22V12M12 12C12 7 17 3 22 3C22 8 18 12 12 12ZM12 12C12 7 7 3 2 3C2 8 6 12 12 12Z"/>
+      </svg>
+    </div>
+    <div class="gc-brand-text">
+      <span>Garden Companion</span>
+      <small>Grow with nature</small>
+    </div>
+  </div>
 
-  <ul class="navmenu">
+  <ul class="gc-navmenu">
     <li><a href="index.php">Home</a></li>
     <li class="active"><a href="plants.php">Plants</a></li>
-    
     <li><a href="aboutus.php">About Us</a></li>
     <li><a href="feedback.php">Feedback</a></li>
   </ul>
 
-  <div class="nav-icon">
-    <input class="search-input" type="search" id="searchBox" placeholder="Search...." maxlength="50">
-    <button class="search-button" type="submit">
-        <i class='bx bx-search'></i>
-    </button>
-    <ul id="searchResults" class="search-results"></ul>
-    <?php
-    if (isset($_SESSION['auth_user'])) {
-      $cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
-      echo "<a href='cart.php' class='cart-icon'>
-              <i class='bx bx-cart'></i>";
-      if ($cartCount > 0) {
-          echo "<span class='cart-badge'>$cartCount</span>";
-      }
-      echo "</a>";
-      echo "<a href='logout.php'><i class='bx bx-log-out'></i></a>";
-  } else {
-  ?>
-      <a href="adlogin.php"><i class='bx bx-user-circle'></i></a>
-  <?php
-  }
-  ?>
+  <div class="gc-nav-right">
+    <div class="gc-search-bar">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2.5" stroke-linecap="round">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input class="gc-search-input" type="search" id="searchBox" placeholder="Search plants..." maxlength="50">
+      <ul id="searchResults" class="search-results"></ul>
+    </div>
+    <?php if (isset($_SESSION['auth_user'])): ?>
+      <?php $cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
+      <a href="cart.php" class="gc-icon-btn" title="Cart">
+        <i class='bx bx-cart'></i>
+        <?php if ($cartCount > 0): ?>
+          <span class="gc-cart-badge"><?php echo $cartCount; ?></span>
+        <?php endif; ?>
+      </a>
+      <a href="logout.php" class="gc-icon-btn" title="Logout"><i class='bx bx-log-out'></i></a>
+    <?php else: ?>
+      <a href="adlogin.php" class="gc-icon-btn" title="Login"><i class='bx bx-user-circle'></i></a>
+    <?php endif; ?>
+  </div>
 </header>
 
-<!-- Season Filter -->
-<div class="season-filter">
-    <label for="season" class="season-label">Want to plant in</label>
-    <form method="GET" action="">
-        <div class="custom-select-wrapper">
-            <select name="season" id="season" onchange="this.form.submit()">
-                <option value="All" <?= ($season == 'All') ? 'selected' : '' ?>>All Seasons</option>
-                <option value="Hot Season" <?= ($season == 'Hot Season') ? 'selected' : '' ?>>Hot Season</option>
-                <option value="Rainy Season" <?= ($season == 'Rainy Season') ? 'selected' : '' ?>>Rainy Season</option>
-                <option value="Cold Season" <?= ($season == 'Cold Season') ? 'selected' : '' ?>>Cold Season</option>
-            </select>
-            <i class='bx bx-chevron-down'></i>
-        </div>
-    </form>
+<!-- PAGE HEADER STRIP -->
+<div class="pl-page-header">
+  <div class="pl-page-header-inner">
+    <div class="pl-breadcrumb">
+      <a href="index.php">Home</a>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+      <span>Plants</span>
+    </div>
+    <h1 class="pl-page-title">
+      <?php if ($season !== 'All'): ?>
+        <?= htmlspecialchars($season) ?>
+      <?php else: ?>
+        All Plants
+      <?php endif; ?>
+    </h1>
+    <p class="pl-page-sub"><?= $total_rows ?> varieties available</p>
+  </div>
 </div>
 
-<main>
-    <?php while ($row = mysqli_fetch_assoc($plantdata)): ?>
-        <div class="card">
-            <div class="image">
-                <img src="uploads/<?= $row['p_image']; ?>">
-            </div>
-            <div class="caption">
-                <p class="plant_name"><?= $row['p_name'] ?></p>
-                <p class="price"><?= $row['price'] ?>Ks</p>
-            </div>
-            <div class="box">
-                <input type="hidden" name="pedit_id" value="<?php echo $row['p_id']; ?>">
-                <a href="moredetail.php?id=<?= $row['p_id'] ?>" id="moredetail-btn">
-                    <button class="detail">More Detail</button>
-                </a> 
-            </div>
+<!-- SEASON FILTER PILLS -->
+<div class="pl-filter-wrap">
+  <div class="pl-filter-inner">
+    <span class="pl-filter-label">Season</span>
+    <div class="pl-filter-pills">
+      <?php
+      $seasons = ['All' => 'All Seasons', 'Hot Season' => '☀️ Hot', 'Rainy Season' => '🌧️ Rainy', 'Cold Season' => '❄️ Cold'];
+      foreach ($seasons as $val => $label):
+      ?>
+      <a href="plants.php?season=<?= urlencode($val) ?>"
+         class="pl-pill <?= ($season === $val) ? 'pl-pill-active' : '' ?>"><?= $label ?></a>
+      <?php endforeach; ?>
+    </div>
+    <p class="pl-result-count"><?= $total_rows ?> results</p>
+  </div>
+</div>
+
+<!-- PRODUCT GRID -->
+<div class="pl-grid-wrap">
+  <div class="pl-grid">
+    <?php $idx = 0; while ($row = mysqli_fetch_assoc($plantdata)): $idx++; ?>
+    <a href="moredetail.php?id=<?= $row['p_id'] ?>" class="pl-card gc-card-reveal" style="--card-delay:<?= min($idx * 50, 400) ?>ms">
+      <div class="pl-card-img">
+        <img src="uploads/<?= htmlspecialchars($row['p_image']) ?>" alt="<?= htmlspecialchars($row['p_name']) ?>" loading="lazy">
+        <span class="pl-season-dot pl-dot-<?= strtolower(explode(' ', $row['season'])[0]) ?>">
+          <?= $row['season'] === 'Hot Season' ? '☀️' : ($row['season'] === 'Rainy Season' ? '🌧️' : '❄️') ?>
+        </span>
+      </div>
+      <div class="pl-card-body">
+        <p class="pl-card-name"><?= htmlspecialchars($row['p_name']) ?></p>
+        <div class="pl-card-foot">
+          <span class="pl-card-price"><?= number_format($row['price']) ?> Ks</span>
+          <span class="pl-card-cta">
+            View
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
         </div>
+      </div>
+    </a>
     <?php endwhile; ?>
-</main>
-
-<!-- Pagination Links -->
-<div class="pagination">
-    <?php if ($page > 1): ?>
-        <a href="?season=<?= $season ?>&page=<?= $page - 1 ?>" class="prev">Previous</a>
-    <?php else: ?>
-        <a href="#" class="prev disabled">Previous</a>
-    <?php endif; ?>
-
-    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-        <a href="?season=<?= $season ?>&page=<?= $i ?>" class="<?= ($i == $page) ? 'active' : '' ?>"><?= $i ?></a>
-    <?php endfor; ?>
-
-    <?php if ($page < $total_pages): ?>
-        <a href="?season=<?= $season ?>&page=<?= $page + 1 ?>" class="next">Next</a>
-    <?php else: ?>
-        <a href="#" class="next disabled">Next</a>
-    <?php endif; ?>
+  </div>
 </div>
 
+<!-- PAGINATION -->
+<?php if ($total_pages > 1): ?>
+<div class="pl-pagination">
+  <?php if ($page > 1): ?>
+    <a href="?season=<?= urlencode($season) ?>&page=<?= $page - 1 ?>" class="pl-page-btn pl-page-prev" aria-label="Previous page">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+    </a>
+  <?php else: ?>
+    <span class="pl-page-btn pl-page-prev pl-page-disabled" aria-disabled="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+    </span>
+  <?php endif; ?>
+
+  <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+    <a href="?season=<?= urlencode($season) ?>&page=<?= $i ?>"
+       class="pl-page-num <?= ($i === $page) ? 'pl-page-active' : '' ?>"
+       aria-current="<?= ($i === $page) ? 'page' : 'false' ?>"><?= $i ?></a>
+  <?php endfor; ?>
+
+  <?php if ($page < $total_pages): ?>
+    <a href="?season=<?= urlencode($season) ?>&page=<?= $page + 1 ?>" class="pl-page-btn pl-page-next" aria-label="Next page">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+    </a>
+  <?php else: ?>
+    <span class="pl-page-btn pl-page-next pl-page-disabled" aria-disabled="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+    </span>
+  <?php endif; ?>
+</div>
+<?php endif; ?>
 
 <?php include('includes/footer.php'); ?>

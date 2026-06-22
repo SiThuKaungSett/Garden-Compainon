@@ -172,33 +172,137 @@ include('includes/header.php'); ?>
     <h2 class="gc-section-title">What grows in<br><em>your climate?</em></h2>
   </div>
   <div class="gc-seasons-grid">
-    <a href="plants.php?season=Hot+Season" class="gc-scard gc-scard-hot gc-reveal" data-dir="left">
+
+    <!-- HOT SEASON -->
+    <a href="plants.php?season=Hot+Season" class="gc-scard gc-scard-hot gc-reveal" data-dir="left" aria-label="Explore Hot Season plants">
+      <!-- layered bg: gradient + SVG sunburst pattern -->
       <div class="gc-scard-bg"></div>
+      <!-- ambient pattern unique to this season -->
+      <svg class="gc-scard-pattern" viewBox="0 0 400 400" aria-hidden="true">
+        <!-- sunburst rays -->
+        <g opacity="0.18" stroke="#FFD580" stroke-width="1" fill="none">
+          <line x1="200" y1="200" x2="200" y2="20"/>
+          <line x1="200" y1="200" x2="320" y2="80"/>
+          <line x1="200" y1="200" x2="380" y2="200"/>
+          <line x1="200" y1="200" x2="320" y2="320"/>
+          <line x1="200" y1="200" x2="200" y2="380"/>
+          <line x1="200" y1="200" x2="80" y2="320"/>
+          <line x1="200" y1="200" x2="20" y2="200"/>
+          <line x1="200" y1="200" x2="80" y2="80"/>
+          <line x1="200" y1="200" x2="260" y2="50"/>
+          <line x1="200" y1="200" x2="350" y2="140"/>
+          <line x1="200" y1="200" x2="350" y2="260"/>
+          <line x1="200" y1="200" x2="260" y2="350"/>
+          <line x1="200" y1="200" x2="140" y2="350"/>
+          <line x1="200" y1="200" x2="50" y2="260"/>
+          <line x1="200" y1="200" x2="50" y2="140"/>
+          <line x1="200" y1="200" x2="140" y2="50"/>
+        </g>
+        <circle cx="200" cy="200" r="60" stroke="#FFD580" stroke-width="0.8" opacity="0.12" fill="none"/>
+        <circle cx="200" cy="200" r="110" stroke="#FFD580" stroke-width="0.5" opacity="0.08" fill="none"/>
+        <circle cx="200" cy="200" r="160" stroke="#FFD580" stroke-width="0.4" opacity="0.05" fill="none"/>
+      </svg>
+      <div class="gc-scard-top">
+        <span class="gc-scard-label">Hot Season</span>
+        <span class="gc-scard-count">38 varieties</span>
+      </div>
       <div class="gc-scard-body">
-        <span class="gc-scard-icon">☀️</span>
-        <h3>Heat-Loving Plants</h3>
-        <p>Bold flavors, vivid colors — seeds that thrive when the sun is strongest.</p>
-        <span class="gc-scard-cta">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        <h3>Heat-Loving<br>Plants</h3>
+        <p>Bold flavors, vivid colors — seeds that thrive when the sun is at its strongest.</p>
+        <span class="gc-scard-cta">
+          Explore collection
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="13" height="13"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
       </div>
     </a>
-    <a href="plants.php?season=Rainy+Season" class="gc-scard gc-scard-rain gc-reveal" data-dir="up">
+
+    <!-- RAINY SEASON -->
+    <a href="plants.php?season=Rainy+Season" class="gc-scard gc-scard-rain gc-reveal" data-dir="up" aria-label="Explore Rainy Season plants">
       <div class="gc-scard-bg"></div>
+      <!-- rain streaks pattern -->
+      <svg class="gc-scard-pattern" viewBox="0 0 400 400" aria-hidden="true">
+        <g opacity="0.12" stroke="#A8CFEA" stroke-width="1" stroke-linecap="round">
+          <line x1="60"  y1="0"   x2="20"  y2="120"/>
+          <line x1="110" y1="0"   x2="70"  y2="130"/>
+          <line x1="160" y1="0"   x2="120" y2="140"/>
+          <line x1="210" y1="0"   x2="170" y2="130"/>
+          <line x1="260" y1="0"   x2="220" y2="135"/>
+          <line x1="310" y1="0"   x2="270" y2="125"/>
+          <line x1="360" y1="0"   x2="320" y2="130"/>
+          <line x1="85"  y1="100" x2="45"  y2="240"/>
+          <line x1="135" y1="110" x2="95"  y2="250"/>
+          <line x1="185" y1="105" x2="145" y2="255"/>
+          <line x1="235" y1="100" x2="195" y2="250"/>
+          <line x1="285" y1="108" x2="245" y2="248"/>
+          <line x1="335" y1="105" x2="295" y2="245"/>
+          <line x1="60"  y1="220" x2="20"  y2="380"/>
+          <line x1="130" y1="230" x2="90"  y2="400"/>
+          <line x1="200" y1="225" x2="160" y2="400"/>
+          <line x1="270" y1="220" x2="230" y2="400"/>
+          <line x1="340" y1="228" x2="300" y2="400"/>
+        </g>
+        <!-- ripple circles at bottom -->
+        <g opacity="0.07" stroke="#A8CFEA" stroke-width="0.8" fill="none">
+          <ellipse cx="120" cy="370" rx="30" ry="8"/>
+          <ellipse cx="120" cy="370" rx="50" ry="14"/>
+          <ellipse cx="280" cy="380" rx="25" ry="7"/>
+          <ellipse cx="280" cy="380" rx="42" ry="12"/>
+        </g>
+      </svg>
+      <div class="gc-scard-top">
+        <span class="gc-scard-label">Rainy Season</span>
+        <span class="gc-scard-count">45 varieties</span>
+      </div>
       <div class="gc-scard-body">
-        <span class="gc-scard-icon">🌧️</span>
-        <h3>Rain-Resilient Crops</h3>
+        <h3>Rain-Resilient<br>Crops</h3>
         <p>Hardy varieties that flourish when the monsoon arrives and the soil is alive.</p>
-        <span class="gc-scard-cta">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        <span class="gc-scard-cta">
+          Explore collection
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="13" height="13"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
       </div>
     </a>
-    <a href="plants.php?season=Cold+Season" class="gc-scard gc-scard-cold gc-reveal" data-dir="right">
+
+    <!-- COLD SEASON -->
+    <a href="plants.php?season=Cold+Season" class="gc-scard gc-scard-cold gc-reveal" data-dir="right" aria-label="Explore Cold Season plants">
       <div class="gc-scard-bg"></div>
+      <!-- frost crystal pattern -->
+      <svg class="gc-scard-pattern" viewBox="0 0 400 400" aria-hidden="true">
+        <g opacity="0.14" stroke="#B8D4E8" stroke-width="0.9" stroke-linecap="round" fill="none">
+          <!-- central snowflake -->
+          <line x1="200" y1="120" x2="200" y2="280"/>
+          <line x1="120" y1="200" x2="280" y2="200"/>
+          <line x1="143" y1="143" x2="257" y2="257"/>
+          <line x1="257" y1="143" x2="143" y2="257"/>
+          <!-- arm ticks -->
+          <line x1="200" y1="152" x2="185" y2="167"/><line x1="200" y1="152" x2="215" y2="167"/>
+          <line x1="200" y1="248" x2="185" y2="233"/><line x1="200" y1="248" x2="215" y2="233"/>
+          <line x1="152" y1="200" x2="167" y2="185"/><line x1="152" y1="200" x2="167" y2="215"/>
+          <line x1="248" y1="200" x2="233" y2="185"/><line x1="248" y1="200" x2="233" y2="215"/>
+          <line x1="163" y1="163" x2="175" y2="175"/><line x1="237" y1="163" x2="225" y2="175"/>
+          <line x1="163" y1="237" x2="175" y2="225"/><line x1="237" y1="237" x2="225" y2="225"/>
+          <!-- small offset crystals -->
+          <line x1="80"  y1="80"  x2="80"  y2="120"/><line x1="60" y1="100" x2="100" y2="100"/>
+          <line x1="320" y1="60"  x2="320" y2="100"/><line x1="300" y1="80" x2="340" y2="80"/>
+          <line x1="60"  y1="310" x2="60"  y2="350"/><line x1="40" y1="330" x2="80"  y2="330"/>
+          <line x1="330" y1="300" x2="330" y2="340"/><line x1="310" y1="320" x2="350" y2="320"/>
+        </g>
+        <circle cx="200" cy="200" r="45" stroke="#B8D4E8" stroke-width="0.6" opacity="0.08" fill="none"/>
+      </svg>
+      <div class="gc-scard-top">
+        <span class="gc-scard-label">Cold Season</span>
+        <span class="gc-scard-count">37 varieties</span>
+      </div>
       <div class="gc-scard-body">
-        <span class="gc-scard-icon">❄️</span>
-        <h3>Cool-Climate Greens</h3>
+        <h3>Cool-Climate<br>Greens</h3>
         <p>Crisp leafy greens and roots that love the cooler months and open air.</p>
-        <span class="gc-scard-cta">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        <span class="gc-scard-cta">
+          Explore collection
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="13" height="13"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
       </div>
     </a>
+
   </div>
 </section>
 

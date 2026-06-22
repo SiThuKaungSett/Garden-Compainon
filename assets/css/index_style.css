@@ -133,12 +133,12 @@ header.gc-header {
   margin: 0; padding: 0;
   text-decoration: none;
 
-  /* position */
+  /* position — anchored to RIGHT edge so it never overflows the viewport */
   position: absolute;
   top: calc(100% + 8px);
-  left: 0;
-  right: auto;
-  width: 340px;       /* wider than search bar */
+  right: 0;
+  left: auto;
+  width: 300px;
   z-index: 9999;
 
   /* look */
@@ -577,86 +577,132 @@ header.gc-header {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
 }
 
+/* ── SEASON CARDS ────────────────────────────────────────── */
 .gc-scard {
-  border-radius: var(--gc-radius); overflow: hidden;
-  position: relative; min-height: 380px;
-  display: flex; align-items: flex-end;
-  text-decoration: none; cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  cursor: pointer;
   touch-action: manipulation;
-  transition: transform 300ms var(--ease-out-quart), box-shadow 300ms ease;
+  transition: transform 320ms var(--ease-out-quart), box-shadow 320ms ease;
+  isolation: isolate;   /* new stacking context — keeps z-index clean */
 }
-.gc-scard:hover { transform: translateY(-7px); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+.gc-scard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 72px rgba(0,0,0,0.55);
+}
 .gc-scard:focus-visible {
-  outline: 2px solid var(--gc-sage); outline-offset: 3px;
+  outline: 2px solid var(--gc-sage);
+  outline-offset: 4px;
 }
 
-/* ── SEASON CARD BACKGROUNDS — textured organic look ─────── */
-/* Noise texture as inline SVG data URI layered over gradient */
-
-/* HOT: warm amber-terracotta with grain */
-.gc-scard-hot .gc-scard-bg {
-  position: absolute; inset: 0;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"),
-    linear-gradient(160deg, #5C2A0A 0%, #8B4010 30%, #B56A28 65%, #D48C3A 100%);
-  background-size: 200px 200px, 100% 100%;
-  transition: transform 400ms var(--ease-out-quart);
+/* ── Gradient backgrounds ── */
+.gc-scard-bg {
+  position: absolute; inset: 0; z-index: 0;
+  transition: transform 420ms var(--ease-out-quart);
 }
+.gc-scard:hover .gc-scard-bg { transform: scale(1.05); }
 
-/* RAINY: deep ocean-slate with grain */
-.gc-scard-rain .gc-scard-bg {
-  position: absolute; inset: 0;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"),
-    linear-gradient(160deg, #0A1E35 0%, #133354 30%, #1C5078 65%, #2A6E9A 100%);
-  background-size: 200px 200px, 100% 100%;
-  transition: transform 400ms var(--ease-out-quart);
-}
+.gc-scard-hot  .gc-scard-bg { background: linear-gradient(160deg, #3D1505 0%, #7A3210 28%, #B55C22 60%, #D4893A 85%, #E8AE5A 100%); }
+.gc-scard-rain .gc-scard-bg { background: linear-gradient(160deg, #07101E 0%, #0F2540 28%, #1A4468 60%, #246490 85%, #2E82B0 100%); }
+.gc-scard-cold .gc-scard-bg { background: linear-gradient(160deg, #080E18 0%, #101D30 28%, #1A2E4A 60%, #243E62 85%, #2E507A 100%); }
 
-/* COLD: cool blue-grey slate with grain */
-.gc-scard-cold .gc-scard-bg {
-  position: absolute; inset: 0;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"),
-    linear-gradient(160deg, #0E1822 0%, #1A2C42 30%, #253E5A 65%, #3A5870 100%);
-  background-size: 200px 200px, 100% 100%;
-  transition: transform 400ms var(--ease-out-quart);
-}
-
-.gc-scard:hover .gc-scard-bg { transform: scale(1.04); }
-
-/* Dark gradient overlay — text readable at all times */
-.gc-scard::before {
-  content: '';
+/* ── Inline SVG pattern — each season has its own ── */
+.gc-scard-pattern {
   position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+/* ── Bottom scrim — text always readable ── */
+.gc-scard::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 2;
   background: linear-gradient(
     to top,
-    rgba(10,10,8,0.92) 0%,
-    rgba(10,10,8,0.35) 45%,
-    transparent 100%
+    rgba(5,5,3,0.94)  0%,
+    rgba(5,5,3,0.55)  38%,
+    rgba(5,5,3,0.08)  65%,
+    transparent       100%
   );
   transition: opacity 300ms ease;
 }
-.gc-scard:hover::before { opacity: 0.75; }
+.gc-scard:hover::after { opacity: 0.85; }
 
-.gc-scard-body { position: relative; z-index: 2; padding: 28px; }
-.gc-scard-icon { font-size: 30px; display: block; margin-bottom: 12px; }
+/* ── Top row: label + count ── */
+.gc-scard-top {
+  position: relative; z-index: 3;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 24px 0;
+}
+.gc-scard-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(237,233,225,0.55);
+  background: rgba(237,233,225,0.08);
+  border: 1px solid rgba(237,233,225,0.12);
+  padding: 4px 10px; border-radius: 100px;
+  backdrop-filter: blur(4px);
+}
+.gc-scard-count {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; color: rgba(237,233,225,0.4);
+  letter-spacing: 0.5px;
+}
+
+/* ── Bottom content ── */
+.gc-scard-body {
+  position: relative; z-index: 3;
+  padding: 0 24px 26px;
+}
 .gc-scard-body h3 {
   font-family: 'DM Serif Display', serif;
-  font-size: 22px; color: var(--gc-paper);
-  margin-bottom: 8px; line-height: 1.2;
+  font-size: 24px; color: var(--gc-paper);
+  margin-bottom: 10px; line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 .gc-scard-body p {
-  font-size: 13px; color: var(--gc-muted);
-  line-height: 1.65; margin-bottom: 18px;
+  font-size: 13px; color: rgba(237,233,225,0.62);
+  line-height: 1.65; margin-bottom: 20px;
+  max-width: 28ch;
 }
+
+/* ── CTA pill ── */
 .gc-scard-cta {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-size: 12.5px; font-weight: 500;
-  color: var(--gc-paper);   /* full white — was too dim before */
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 500;
+  color: var(--gc-paper);
+  background: rgba(237,233,225,0.1);
+  border: 1px solid rgba(237,233,225,0.18);
+  padding: 8px 16px; border-radius: 100px;
+  backdrop-filter: blur(6px);
+  transition:
+    background 200ms ease,
+    border-color 200ms ease,
+    gap 200ms var(--ease-out-quart);
 }
-.gc-scard-cta svg { transition: transform 200ms var(--ease-out-quart); }
-.gc-scard:hover .gc-scard-cta svg { transform: translateX(5px); }
+.gc-scard:hover .gc-scard-cta {
+  background: rgba(237,233,225,0.18);
+  border-color: rgba(237,233,225,0.35);
+  gap: 12px;
+}
+.gc-scard-cta svg {
+  flex-shrink: 0;
+  transition: transform 200ms var(--ease-out-quart);
+}
+.gc-scard:hover .gc-scard-cta svg { transform: translateX(3px); }
+
+/* Per-season accent colour on hover CTA */
+.gc-scard-hot:hover  .gc-scard-cta { border-color: rgba(232,174,90,0.4); color: #F5CC80; }
+.gc-scard-rain:hover .gc-scard-cta { border-color: rgba(100,180,230,0.35); color: #A8CFEA; }
+.gc-scard-cold:hover .gc-scard-cta { border-color: rgba(130,170,210,0.35); color: #B8D4E8; }
 
 /* ── FEATURES ─────────────────────────────────────────────── */
 .gc-features {
@@ -762,5 +808,5 @@ footer.footer .socials a:hover i{ color: var(--gc-paper); }
   .gc-section-title { font-size: 28px; }
   .gc-hero-stats { flex-wrap: wrap; gap: 16px; }
   .gc-stat strong { font-size: 22px; }
-  #searchResults.search-results { width: 260px; }
+  #searchResults.search-results { width: 240px; }
 }
